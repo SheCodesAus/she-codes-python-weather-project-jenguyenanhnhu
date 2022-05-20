@@ -45,7 +45,7 @@ def convert_f_to_c(temp_in_fahrenheit):
     # pass
 
 def calculate_mean(weather_data):
-    return statistics.mean(map(float, weather_data))
+    return statistics.mean(map(float(weather_data)))
 # print(calculate_mean([49, 57, 56, 55, 53]))
     # """Calculates the mean value from a list of numbers.
     # Args:
@@ -60,9 +60,13 @@ def load_data_from_csv(csv_file):
     with open(csv_file) as csv_file:
         reader = csv.reader(csv_file)
         next(csv_file)
-        for line in reader:
-            return line
-# print(load_data_from_csv("tests/data/example_one.csv"))
+        a = []
+        for line in reader: 
+            if line != []:
+                b = [line[0], int(line[1]), int(line[2])]
+                a.append(b)
+        return a
+# print(load_data_from_csv("tests/data/example_two.csv"))
     # """Reads a csv file and stores the data in a list.
     # Args:
     #     csv_file: a string representing the file path to a csv file.
@@ -72,12 +76,26 @@ def load_data_from_csv(csv_file):
     # pass
 
 
+# def find_min(weather_data):
+#     c = [i for i in weather_data[::-1]]
+#     find_min = min(map(float, c)), weather_data.index(min(map(float, c)))
+#     return find_min
+#     # if min(x for x in weather_data if weather_data.count(x) > 1):
+#     #     return min(map(float, weather_data[c])), weather_data.index(min(map(float, weather_data[c])))
+#     # else:
+#     #     return min(map(float, weather_data)), weather_data.index(min(map(float, weather_data)))
+# print(find_min([3, 5, 0, 9, 0]))
+
+
 def find_min(weather_data):
-    if min(x for x in weather_data if weather_data.count(x) > 1):
-        return min(map(float, weather_data))
+    if weather_data:
+        min_val = min(weather_data)
+        for i in range(len(weather_data)):
+            if weather_data[i] == min_val:
+                idx = i
+        return float(min_val), idx
     else:
-        return min(map(float, weather_data)), weather_data.index(min(map(float, weather_data)))
-print(find_min([3, 5, 2, 9, 2]))
+        return ()
     # """Calculates the minimum value in a list of numbers.
     # Args:
     #     weather_data: A list of numbers.
@@ -86,21 +104,26 @@ print(find_min([3, 5, 2, 9, 2]))
     # """
     # pass
 
-
 def find_max(weather_data):
-    """Calculates the maximum value in a list of numbers.
-
-    Args:
-        weather_data: A list of numbers.
-    Returns:
-        The maximum value and it's position in the list.
-    """
-    pass
+    if weather_data:
+        max_val = max(weather_data)
+        for i in range(len(weather_data)):
+            if weather_data[i] == max_val:
+                idx = i
+        return float(max_val), idx
+    else:
+        return ()
+    # """Calculates the maximum value in a list of numbers.
+    # Args:
+    #     weather_data: A list of numbers.
+    # Returns:
+    #     The maximum value and it's position in the list.
+    # """
+    # pass
 
 
 def generate_summary(weather_data):
     """Outputs a summary for the given weather data.
-
     Args:
         weather_data: A list of lists, where each sublist represents a day of weather data.
     Returns:
@@ -111,7 +134,6 @@ def generate_summary(weather_data):
 
 def generate_daily_summary(weather_data):
     """Outputs a daily summary for the given weather data.
-
     Args:
         weather_data: A list of lists, where each sublist represents a day of weather data.
     Returns:
