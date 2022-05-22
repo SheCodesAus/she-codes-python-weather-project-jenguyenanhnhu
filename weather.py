@@ -146,15 +146,6 @@ def generate_summary(weather_data):
     max_mean_value = statistics.mean(map(float,max_list))
     max_mean = round((max_mean_value - 32)/1.8, 1)
     return f"{n} Day Overview\n  The lowest temperature will be {min_temp}{DEGREE_SYMBOL}, and will occur on {min_date}.\n  The highest temperature will be {max_temp}{DEGREE_SYMBOL}, and will occur on {max_date}.\n  The average low this week is {min_mean}{DEGREE_SYMBOL}.\n  The average high this week is {max_mean}{DEGREE_SYMBOL}.\n"
-print(generate_summary([["2020-06-19T07:00:00+08:00", 47, 46],
-    ["2020-06-20T07:00:00+08:00", 51, 67],
-    ["2020-06-21T07:00:00+08:00", 58, 72],
-    ["2020-06-22T07:00:00+08:00", 59, 71],
-    ["2020-06-23T07:00:00+08:00", 52, 71],
-    ["2020-06-24T07:00:00+08:00", 52, 67],
-    ["2020-06-25T07:00:00+08:00", 48, 66],
-    ["2020-06-26T07:00:00+08:00", 53, 66]]
-))
     # """Outputs a summary for the given weather data.
     # Args:
     #     weather_data: A list of lists, where each sublist represents a day of weather data.
